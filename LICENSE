@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2023 vedrakholia32
+Copyrigsdht (c) 2023 vedrakholia32
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +19,57 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+import numpy as np
+a11 = int(input("a11: "))
+a12 = int(input("a12: "))
+a13 = int(input("a13: "))
+a21 = int(input("a21: "))
+a22 = int(input("a22: "))
+a23 = int(input("a23: "))
+a31 = int(input("a31: "))
+a32 = int(input("a32: "))
+a33 = int(input("a33: "))
+
+
+my_array = np.array([[a11, a12, a13],
+                     [a21, a22, a23],
+                     [a31, a32, a33]])
+
+det = a11*(a22*a33 - a23*a32) - a12*(a21*a33 - a23*a31) + a13*(a21*a32 - a22*a31)
+print(det)
+
+a11 = my_array[0, 0]
+a12 = my_array[0, 1]
+a13 = my_array[0, 2]
+a21 = my_array[1, 0]
+a22 = my_array[1, 1]
+a23 = my_array[1, 2]
+a31 = my_array[2, 0]
+a32 = my_array[2, 1]
+a33 = my_array[2, 2]
+
+print(f"{a11}, {a12}, {a13} \n{a21}, {a22}, {a23} \n{a31}, {a32}, {a33}")
+
+A11 = a22*a33 - a32*a23
+A12 = a21*a33 - a23*a31
+A13 = a21*a32 - a31*a22
+A21 = a12*a33 - a32*a13
+A22 = a11*a33 - a13*a31
+A23 = a11*a32 - a31*a12
+A31 = a12*a23 - a13*a22
+A32 = a11*a23 - a21*a13
+A33 = a11*a22 - a12*a21
+
+print(f"{A11}, {A21}, {A31} \n{A12}, {A22}, {A32} \n{A13}, {A23}, {A33}")
+
+adjoin_matrix = np.array([[A11, -1 * A21, A31],
+                          [-1*A12, A22, -1*A32],
+                          [A13, -1*A23, A33]])
+
+final_inverted_matrix = adjoin_matrix * (1/det)
+print(final_inverted_matrix)
+# for i in range(3):
+#     for j in range(3):
+#         print(final_inverted_matrix[i][j], end=" ")
+#     print()
